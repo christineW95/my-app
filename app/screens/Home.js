@@ -15,10 +15,10 @@ const Home = ({ navigation }) => {
 
     return (
         <View
-            style={{ padding: 10, backgroundColor: style.brandPrimary }}
+            style={{ padding: 10, backgroundColor:'lightgray' }}
         >
-            {/* <Searchbar searchByName={searchByName} />
-            <ItemsList navigation={navigation} /> */}
+            <Searchbar searchByName={searchByName} />
+            <ItemsList navigation={navigation} />
         </View>
     );
 };

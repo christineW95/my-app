@@ -107,6 +107,7 @@ const ItemsList = ({ navigation }) => {
         return (
             <>
                 <TouchableOpacity style={{ flexDirection: 'row', flex: 1, padding: 10 }} key={item?.id} onPress={() => {
+                    navigation.navigate('MovieDetails',{movie:item})
                 }}>
                     <View style={{ flex: 8 }}>
                         {/* title */}
@@ -138,7 +139,7 @@ const ItemsList = ({ navigation }) => {
         <FlatList data={data} renderItem={renderItem}
             initialNumToRender={5}
             keyExtractor={(item, index) => index.toString()} contentContainerStyle={{
-                backgroundColor: style.brandPrimary
+                // backgroundColor: style.brandPrimary
             }} />
     );
 };

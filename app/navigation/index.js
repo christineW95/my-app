@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import Home from '../screens/Home';
+import MovieDetails from '../screens/MovieDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ const HomeStackNavigator = () => {
 
                 }}>
                 <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="MovieDetails" component={MovieDetails} />
 
             </Stack.Navigator>
         </SafeAreaView>
