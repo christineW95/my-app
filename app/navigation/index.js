@@ -2,7 +2,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import SearchByName from '../screens/SearchByName';
+import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const HomeStackNavigator = () => {
                     },
 
                 }}>
-                <Stack.Screen name="SearchByName" component={SearchByName} />
+                <Stack.Screen name="Home" component={Home} />
 
             </Stack.Navigator>
         </SafeAreaView>

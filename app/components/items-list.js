@@ -6,12 +6,10 @@ import {
     View,
     Text,
     TouchableOpacity,
-    TouchableHighlight,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { style } from '../theme/light';
 
-const ItemsList = ({ navigation,data }) => {
+const ItemsList = ({ navigation }) => {
     const data = [
         {
             id: 1,
