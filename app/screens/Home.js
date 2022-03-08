@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
 
     return (
         <View
-            style={{ padding: 10, backgroundColor:'lightgray' }}
+            style={{ padding: 7, backgroundColor:'#303C4B',flex:1 }}
         >
             <Searchbar searchByName={searchByName} />
             <ItemsList navigation={navigation} />

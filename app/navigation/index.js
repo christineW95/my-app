@@ -12,9 +12,9 @@ const HomeStackNavigator = () => {
         <SafeAreaView
             style={{
                 flex: 1,
-                backgroundColor: '#054F72',
             }}>
             <Stack.Navigator
+            
                 screenOptions={{
                     headerStyle: {
                         backgroundColor: '#1E1A3C',

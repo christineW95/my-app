@@ -5,7 +5,7 @@ import HomeStackNavigator from './app/navigation';
 
 export default function App() {
   return (
-   <NavigationContainer>
+   <NavigationContainer> 
      <HomeStackNavigator/>
    </NavigationContainer>
   );

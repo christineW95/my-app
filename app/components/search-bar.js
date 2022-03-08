@@ -12,14 +12,15 @@ const Searchbar = (props) => {
         <View
             style={{
                 justifyContent: 'space-between',
-                backgroundColor: '#B5CFE8',
+                alignItems:'center',
+                backgroundColor: 'white',
                 borderRadius: 15,
                 padding: 10,
-                margin: 2,
+                margin: 3,
                 flexDirection: 'row',
             }}>
             <TouchableOpacity onPress={searchByName}>
-                <MaterialCommunityIcons name="magnify" size={20} color={'white'} />
+                <MaterialCommunityIcons name="magnify" size={20} color={'orange'} />
             </TouchableOpacity>
             <TextInput
                 style={{ justifyContent: 'flex-start', flex: 1 }}
