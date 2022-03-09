@@ -30,7 +30,8 @@ export function useFetchMovies(type) {
           setResult({ loading: false, data: res });
         }
       })
-      .catch((err) => setError(err));
+      .catch((err) => setError(err)).finally(()=>
+      setResult({loading:false,data:null}));
     return () => {};
   }, [superhero]);
 
