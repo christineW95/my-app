@@ -9,22 +9,21 @@ import {
 } from 'react-native';
 import MovieCard from './card';
 
-const ItemsList = ({ navigation,data }) => {
+const ItemsList = ({ navigation,data ,renderItem}) => {
    
-    const renderItem = ({ item }) => {
-        console.log({item})
-        return (
-            <>
-                <TouchableOpacity style={{ flex: 1,margin:5 }} key={item?.id} onPress={() => {
-                    navigation.navigate('MovieDetails',{movie:item})
-                }}>
-                    <MovieCard movie={item}/>
+    // const renderItem = ({ item }) => {
+    //     return (
+    //         <>
+    //             <TouchableOpacity style={{ flex: 1,margin:5 }} key={item?.id} onPress={() => {
+    //                 navigation.navigate('MovieDetails',{movie:item})
+    //             }}>
+    //                 <MovieCard movie={item}/>
                    
-                </TouchableOpacity>
-            </>
+    //             </TouchableOpacity>
+    //         </>
 
-        );
-    };
+    //     );
+    // };
     return (
         // TODO : ADD Header
         <FlatList data={data} renderItem={renderItem}
