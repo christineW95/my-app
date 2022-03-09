@@ -27,9 +27,10 @@ const ItemsList = ({ navigation,data ,renderItem}) => {
     return (
         // TODO : ADD Header
         <FlatList data={data} renderItem={renderItem}
-            initialNumToRender={5}
+        horizontal
+        ListHeaderComponent={header}
+        onEndReached={()=>console.log('reached')}
             keyExtractor={(item, index) => index.toString()} contentContainerStyle={{
-                // backgroundColor: style.brandPrimary
             }} />
     );
 };
