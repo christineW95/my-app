@@ -1,19 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import superheroesData from "../services/constants/superheroes-data";
 import { API_KEY, config } from "../services/config";
 import { getRequest } from "../services/APIs/MoviesAPIs";
 
 export const fetchStaticData = () =>
   require("../services/constants/superheroes-data.json");
-const generateRandom = (limit) => Math.floor(Math.random() * limit);
+// const generateRandom = (limit) => Math.floor(Math.random() * limit);
 
-export function useFetchMovies(type) {
-  const superheroes = fetchStaticData();
-  const superhero = useMemo(
-    () => superheroes[generateRandom(superheroes.length)],
-    [superheroes.length]
-  );
+export function useFetchMovies(type,actor) {
+  // const superheroes = fetchStaticData();
+  // const superhero = useMemo(
+  //   () => superheroes[generateRandom(superheroes.length)],
+  //   [superheroes.length]
+  // );
   const [result, setResult] = useState({
     loading: true,
     data: null,
@@ -22,8 +20,8 @@ export function useFetchMovies(type) {
   useEffect(() => {
     getRequest(config.base_url, {
       apikey: API_KEY,
-      s: superhero,
-       type,
+      s: actor,
+      type,
     })
       .then((res) => {
         if (res) {
@@ -33,7 +31,7 @@ export function useFetchMovies(type) {
       .catch((err) => {setError(err)
       setResult({loading:false,data:null})})
     return () => {};
-  }, [superhero]);
+  }, [type,actor]);
 
   return { result, error };
 }

@@ -15,14 +15,13 @@ const HomeStackNavigator = () => {
                 flex: 1,
             }}>
             <Stack.Navigator
-            
-                screenOptions={{
+            >
+                <Stack.Screen name="/" component={Search} options={{
                     headerShown:false
 
-                }}>
-                {/* <Stack.Screen name="/" component={Search} /> */}
+                }} />
                     
-                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Home" component={Home} options={{title:'All Movies'}} />
                 <Stack.Screen name="MovieDetails" component={MovieDetails} />
 
             </Stack.Navigator>

@@ -7,8 +7,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../theme';
 
 const Searchbar = (props) => {
-    const { searchByName, children } = props;
-    const [query, setQuery] = useState('')
+    const { searchByName, children ,value,onChangeText} = props;
+    // const [query, setQuery] = useState('')
     return (
         <View
             style={{
@@ -20,20 +20,18 @@ const Searchbar = (props) => {
                 margin: 15,
                 flexDirection: 'row',
             }}>
-            <TouchableOpacity onPress={searchByName}>
+            <TouchableOpacity onPress={onChangeText}>
                 <MaterialCommunityIcons name="magnify" size={20} color={colors.red} />
             </TouchableOpacity>
             <TextInput
                 style={{ justifyContent: 'flex-start', flex: 1 }}
                 placeholder='Search'
                 placeholderTextColor={'white'}
-                onChangeText={text => {
-                    setQuery(text)
-                    searchByName(text)
-                }}
-                value={query}
+                onChangeText={onChangeText}
+                value={value}
             />
             {children}
+       
         </View>
     );
 };

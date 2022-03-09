@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import MovieCard from './card';
 
-const ItemsList = ({ navigation,data ,renderItem}) => {
+const ItemsList = ({ navigation,data ,renderItem,horizontal}) => {
    
     // const renderItem = ({ item }) => {
     //     return (
@@ -27,9 +27,7 @@ const ItemsList = ({ navigation,data ,renderItem}) => {
     return (
         // TODO : ADD Header
         <FlatList data={data} renderItem={renderItem}
-        horizontal
-        ListHeaderComponent={header}
-        onEndReached={()=>console.log('reached')}
+        horizontal={horizontal}
             keyExtractor={(item, index) => index.toString()} contentContainerStyle={{
             }} />
     );
