@@ -30,9 +30,7 @@ const Home = ({ route,navigation }) => {
   return (
     <ScrollView style={{ padding: 10, backgroundColor: "white", flex: 1 }}>
       {loading ? <ActivityIndicator color={colors.red} size={"large"} /> : null}
-      {/* {data && data.totalResults ? (
-        <Text>{data.totalResults} results </Text>
-      ) : null} */}
+     
     {
     currentYearMovies.length > 0 ?
 

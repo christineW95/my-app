@@ -57,8 +57,6 @@ const Search = ({ navigation }) => {
       <Searchbar
         onChangeText={(text) => {
           setQuery(text);
-          navigation.navigate('Home',{actor:text})
-
         }}
         value={query}
       >
