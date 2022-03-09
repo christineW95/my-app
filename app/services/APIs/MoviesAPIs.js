@@ -4,7 +4,7 @@ import axios from "axios";
 const getRequest = async (url = '', body = {}) => {
     var data = JSON.stringify(body);
     var config = {
-        method: 'post',
+        method: 'get',
         url,
         headers: {
             'Content-Type': 'application/json'
