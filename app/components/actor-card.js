@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Card,  } from 'react-native-paper';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="movie" color='#F28D79' style={{backgroundColor:'#303C4B'}} />
 

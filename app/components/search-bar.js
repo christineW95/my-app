@@ -7,8 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../theme';
 
 const Searchbar = (props) => {
-    const { searchByName, children ,value,onChangeText} = props;
-    // const [query, setQuery] = useState('')
+    const { children ,value,onChangeText} = props;
     return (
         <View
             style={{

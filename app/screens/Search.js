@@ -4,16 +4,13 @@ import Searchbar from "../components/search-bar";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
-  ActivityIndicator,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import ItemsList from "../components/items-list";
-import { fetchStaticData, useFetchMovies } from "../store/fetchDataHook";
+import { fetchStaticData } from "../store/fetchDataHook";
 import colors from "../theme";
-import MovieCard from "../components/card";
 import ActorCard from "../components/actor-card";
 const Search = ({ navigation }) => {
   const [query, setQuery] = useState("");

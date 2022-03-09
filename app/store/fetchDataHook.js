@@ -4,14 +4,9 @@ import { getRequest } from "../services/APIs/MoviesAPIs";
 
 export const fetchStaticData = () =>
   require("../services/constants/superheroes-data.json");
-// const generateRandom = (limit) => Math.floor(Math.random() * limit);
 
 export function useFetchMovies(type,actor) {
-  // const superheroes = fetchStaticData();
-  // const superhero = useMemo(
-  //   () => superheroes[generateRandom(superheroes.length)],
-  //   [superheroes.length]
-  // );
+ 
   const [result, setResult] = useState({
     loading: true,
     data: null,
