@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import colors from '../theme';
 
 const Searchbar = (props) => {
     const { searchByName, children } = props;
@@ -13,14 +14,14 @@ const Searchbar = (props) => {
             style={{
                 justifyContent: 'space-between',
                 alignItems:'center',
-                backgroundColor: 'white',
-                borderRadius: 15,
-                padding: 10,
-                margin: 3,
+                backgroundColor: colors.lightgrey,
+                borderRadius: 25,
+                padding: 7,
+                margin: 15,
                 flexDirection: 'row',
             }}>
             <TouchableOpacity onPress={searchByName}>
-                <MaterialCommunityIcons name="magnify" size={20} color={'orange'} />
+                <MaterialCommunityIcons name="magnify" size={20} color={colors.red} />
             </TouchableOpacity>
             <TextInput
                 style={{ justifyContent: 'flex-start', flex: 1 }}

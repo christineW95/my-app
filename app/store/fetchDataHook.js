@@ -4,7 +4,7 @@ import superheroesData from "../services/constants/superheroes-data";
 import { API_KEY, config } from "../services/config";
 import { getRequest } from "../services/APIs/MoviesAPIs";
 
-const fetchStaticData = () =>
+export const fetchStaticData = () =>
   require("../services/constants/superheroes-data.json");
 const generateRandom = (limit) => Math.floor(Math.random() * limit);
 
@@ -30,7 +30,8 @@ export function useFetchMovies(type) {
           setResult({ loading: false, data: res });
         }
       })
-      .catch((err) => setError(err));
+      .catch((err) => {setError(err)
+      setResult({loading:false,data:null})})
     return () => {};
   }, [superhero]);
 

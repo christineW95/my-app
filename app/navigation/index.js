@@ -4,6 +4,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import Home from '../screens/Home';
 import MovieDetails from '../screens/MovieDetails';
+import Search from '../screens/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,14 +17,11 @@ const HomeStackNavigator = () => {
             <Stack.Navigator
             
                 screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#1E1A3C',
-                    },
-                    headerTitleStyle: {
-                        color: 'white',
-                    },
+                    headerShown:false
 
                 }}>
+                {/* <Stack.Screen name="/" component={Search} /> */}
+                    
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="MovieDetails" component={MovieDetails} />
 
