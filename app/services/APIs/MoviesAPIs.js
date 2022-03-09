@@ -2,19 +2,18 @@
 import axios from "axios";
 
 const getRequest = async (url = '', body = {}) => {
-    var data = JSON.stringify(body);
     var config = {
         method: 'get',
         url,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: data
+        params: body
     };
     try {
-        const response = await axios(config);
-        const {  token } = response.data;
-        return token;
+        const result = await axios(config);
+        const {data:{Search ,totalResults},status}=result
+        console.log({Search,totalResults})
+        if(status == 200)
+        if(Search !==null)
+        return {Search,totalResults};
     }
     catch (Err) {
         console.log(Err)
@@ -26,10 +25,7 @@ async function postRequest(url = '', body = {}) {
     var config = {
         method: 'post',
         url: url,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: body
+        params: body
     };
     try {
         const res = await axios(config);
