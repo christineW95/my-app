@@ -9,107 +9,16 @@ import {
 } from 'react-native';
 import MovieCard from './card';
 
-const ItemsList = ({ navigation }) => {
-    const data = [
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        },
-        {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        }, {
-            id: 1,
-            name: 'Movie',
-
-        },
-
-    ];
+const ItemsList = ({ navigation,data }) => {
+   
     const renderItem = ({ item }) => {
+        console.log({item})
         return (
             <>
                 <TouchableOpacity style={{ flex: 1,margin:5 }} key={item?.id} onPress={() => {
                     navigation.navigate('MovieDetails',{movie:item})
                 }}>
-                    <MovieCard/>
+                    <MovieCard movie={item}/>
                    
                 </TouchableOpacity>
             </>
