@@ -114,10 +114,11 @@ const MovieDetails = ({ route, navigation }) => {
         <View
           style={{
             backgroundColor: colors.blue,
-            flex: 1,
-            borderTopLeftRadius: 15,
-            borderTopRightRadius: 15,
+            flex: 1,marginVertical:10,
+            borderTopLeftRadius: 25,
+            borderTopRightRadius: 25,
             paddingHorizontal: 20,
+            padding:10
           }}
         >
           {actors.length > 0 ? (
