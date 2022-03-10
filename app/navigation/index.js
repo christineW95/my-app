@@ -21,7 +21,7 @@ const HomeStackNavigator = () => {
 
                 }} />
                     
-                <Stack.Screen name="Home" component={Home} options={{title:'All Movies'}} />
+                <Stack.Screen name="Home" component={Home} options={{title:'Hero Spin'}} />
                 <Stack.Screen name="MovieDetails" component={MovieDetails} />
 
             </Stack.Navigator>

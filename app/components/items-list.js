@@ -4,11 +4,12 @@ import React from "react";
 import { FlatList, View, Text } from "react-native";
 import colors from "../theme";
 
-const ItemsList = ({ data, renderItem, horizontal }) => {
+const ItemsList = ({ data, renderItem, horizontal,header }) => {
   return (
     <FlatList
       data={data}
       renderItem={renderItem}
+      ListHeaderComponent={header}
       ListEmptyComponent={
         <View>
           <Text style={{ color: colors.grey, textAlign: "center" }}>
@@ -18,7 +19,7 @@ const ItemsList = ({ data, renderItem, horizontal }) => {
       }
       horizontal={horizontal}
       keyExtractor={(item, index) => index.toString()}
-      contentContainerStyle={{}}
+      contentContainerStyle={{padding:20}}
     />
   );
 };
