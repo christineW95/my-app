@@ -19,6 +19,25 @@ const getRequest = async (url = '', body = {}) => {
     }
 
 };
+const getMovieDetailsRequest = async (url = '', body = {}) => {
+    var config = {
+        method: 'get',
+        url,
+        params: body
+    };
+    try {
+        const result = await axios(config);
+        const {data,status}=result
+        if(status == 200)
+      {  if(data !==null)
+        return {data}
+    }
+    }
+    catch (Err) {
+        console.log(Err)
+    }
+
+};
 async function postRequest(url = '', body = {}) {
 
     var config = {
@@ -38,5 +57,6 @@ async function postRequest(url = '', body = {}) {
 
 export {
     getRequest,
+    getMovieDetailsRequest,
     postRequest
 }

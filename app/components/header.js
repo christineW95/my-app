@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import React from 'react';
+import colors from '../theme';
 
 const Header = () => {
     return (
@@ -9,7 +10,7 @@ const Header = () => {
                 backgroundColor: '#054F72',
             }}>
             <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, padding: 30 }}>
-                <Text style={{ color: 'white', fontSize: 12, fontWeight: 'bold', fontStyle: 'italic' }} >Hero Spin</Text>
+                <Text style={{ color: colors.white, fontSize: 12, fontWeight: 'bold', fontStyle: 'italic' }} >Hero Spin</Text>
             </View>
         </View>
     );

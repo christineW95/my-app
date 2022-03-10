@@ -25,7 +25,7 @@ const Searchbar = (props) => {
             <TextInput
                 style={{ justifyContent: 'flex-start', flex: 1 }}
                 placeholder='Search'
-                placeholderTextColor={'white'}
+                placeholderTextColor={colors.white}
                 onChangeText={onChangeText}
                 value={value}
             />
