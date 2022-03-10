@@ -13,7 +13,7 @@ const ItemsList = ({ data, renderItem, horizontal,header }) => {
       ListEmptyComponent={
         <View>
           <Text style={{ color: colors.grey, textAlign: "center" }}>
-            No movies to show
+            No results to show
           </Text>
         </View>
       }

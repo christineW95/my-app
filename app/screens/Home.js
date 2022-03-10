@@ -12,11 +12,12 @@ import { useFetchMovies } from "../store/fetchDataHook";
 import MovieCard from "../components/card";
 import colors from "../theme";
 const Home = ({ route, navigation }) => {
+  const generateRandom = (limit) => Math.floor(Math.random() * limit);
   const { actor } = route.params;
   let {
     result: { loading, data },
     error,
-  } = useFetchMovies( actor);
+  } = useFetchMovies(actor);
   if (data && data.totalResults) {
     data = data.Search.map((item) => {
       return {
@@ -28,14 +29,13 @@ const Home = ({ route, navigation }) => {
       };
     });
   }
-  let movies =data?.filter(movie=>movie.type=='movie') || [];
- 
-  let series=data?.filter(movie=>movie.type=='series') || [];
+  let movies = data?.filter((movie) => movie.type == "movie") || [];
 
-  const currentYearMovies = movies.filter(
-    (item) => item.year == new Date().getFullYear()
-  );
+  let series = data?.filter((movie) => movie.type == "series") || [];
 
+
+  let recommendedMovie = movies.length > 0 ? movies[generateRandom(movies.length)]:undefined ;
+  let recommendedSeries = series.length > 0 ? series[generateRandom(series.length)]  : undefined;
   return (
     <ScrollView style={{ padding: 10, backgroundColor: "white", flex: 1 }}>
       {loading ? <ActivityIndicator color={colors.red} size={"large"} /> : null}
@@ -44,19 +44,78 @@ const Home = ({ route, navigation }) => {
           Error in getting movies
         </Text>
       ) : null}
-<View style={{flex:1}}>
-{/* <MovieCard movie={}/> */}
-</View>
+      {recommendedSeries && recommendedSeries !==undefined ? (
+        <View style={{ flex: 2 }}>
+          <View>
+            <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+              Recommended Series
+            </Text>
+          </View>
 
-<View style={{ flex: 1 }}>
-  <View><Text style={{fontSize:25,fontWeight:'bold'}}>Related Series</Text></View>
-          <ItemsList navigation={navigation} data={series}
+          <MovieCard movie={recommendedSeries} />
+        </View>
+      ) : null}
 
+{
+  series?.length > 0 ?
+  <View style={{ flex: 3 }}>
+  <View>
+    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+      Related Series
+    </Text>
+  </View>
+  <ItemsList
+    navigation={navigation}
+    data={series}
+    renderItem={({ item }) => {
+      return (
+        <>
+          <TouchableOpacity
+            style={{ flex: 1, margin: 5 }}
+            key={item?.id}
+            onPress={() => {
+              navigation.navigate("MovieDetails", { movie: item });
+            }}
+          >
+            <MovieCard movie={item} />
+          </TouchableOpacity>
+        </>
+      );
+    }}
+    horizontal={true}
+  />
+</View>:null
+}
+ 
+      {recommendedMovie && recommendedMovie !==undefined ? (
+        <View style={{ flex: 2 }}>
+          <View>
+            <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+              Recommended Movie
+            </Text>
+          </View>
+
+          <MovieCard movie={recommendedMovie} />
+        </View>
+      ) : null}
+
+{
+movies?.length > 0 ? 
+      <View style={{ flex: 3,marginVertical:2 }}>
+        <View >
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            Related Movies
+          </Text>
+        </View>
+        <ItemsList
+          navigation={navigation}
+          data={movies}
+          horizontal={true}
           renderItem={({ item }) => {
             return (
               <>
                 <TouchableOpacity
-                  style={{ flex: 1, margin: 5 }}
+                  style={{ flex: 1, marginHorizontal: 10 }}
                   key={item?.id}
                   onPress={() => {
                     navigation.navigate("MovieDetails", { movie: item });
@@ -67,34 +126,11 @@ const Home = ({ route, navigation }) => {
               </>
             );
           }}
-           horizontal={true}/>
-        </View>
-   
-  
-       
-        <View style={{ flex: 1 }}>
-        <View style={{}}><Text style={{fontSize:25,fontWeight:'bold'}}>Related Movies</Text></View>
-          <ItemsList
-            navigation={navigation}
-            data={movies}
-            horizontal={true}
-            renderItem={({ item }) => {
-              return (
-                <>
-                  <TouchableOpacity
-                    style={{ flex: 1, marginHorizontal:10 }}
-                    key={item?.id}
-                    onPress={() => {
-                      navigation.navigate("MovieDetails", { movie: item });
-                    }}
-                  >
-                    <MovieCard movie={item} />
-                  </TouchableOpacity>
-                </>
-              );
-            }}
-          />
-        </View>
+        />
+      </View>
+:null
+}
+
     </ScrollView>
   );
 };
