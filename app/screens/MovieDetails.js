@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, ActivityIndicator } from "react-native";
 import { getMovieDetailsRequest } from "../services/APIs/MoviesAPIs";
 import { API_KEY, config } from "../services/config";
 import { useFetchMovieDetails } from "../store/fetchDataHook";
@@ -27,6 +27,12 @@ const MovieDetails = ({ route, navigation }) => {
   const rating = Ratings[0]?.Value || "";
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+       {loading ? <ActivityIndicator color={colors.red} size={"large"} /> : null}
+      {error ? (
+        <Text style={{ color: colors.grey, textAlign: "center" }}>
+          Error in getting movies
+        </Text>
+      ) : null}
       <View style={{ alignItems: "center", flex: 1 }}>
         <Image
           source={{ uri: poster }}
