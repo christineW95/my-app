@@ -1,6 +1,24 @@
-import {useDispatch} from 'react-redux'; 
-const dispatch = useDispatch();
-dispatch({type: "SUCCESS", payload: tasks,loading:false})
-dispatch({type: "FAILURE", payload: [],error:error,loading:false})
-dispatch({type: "REQUEST", payload: [],error:null,loading:true})
- // tasks = fetched api data you are sending to your redux method
+export const FETCH_DATA_PENDING = 'FETCH_DATA_PENDING';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
+
+export function fetchDataPending() {
+    return {
+        type: FETCH_DATA_PENDING
+    }
+}
+
+export function fetchDataSuccess(data) {
+    return {
+        type: FETCH_DATA_SUCCESS,
+        payload: data
+    }
+}
+
+export function fetchDataError(error) {
+    return {
+        type: FETCH_DATA_ERROR,
+        payload:[],
+        error: error
+    }
+}

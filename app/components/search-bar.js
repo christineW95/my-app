@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../theme';
 
 const Searchbar = (props) => {
-    const { children ,value,onChangeText} = props;
+    const { children ,value,onChangeText,onEndEditing} = props;
     return (
         <View
             style={{
@@ -26,7 +26,9 @@ const Searchbar = (props) => {
                 style={{ justifyContent: 'flex-start', flex: 1 }}
                 placeholder='Search'
                 placeholderTextColor={colors.white}
+                onEndEditing={onEndEditing}
                 onChangeText={onChangeText}
+               
                 value={value}
             />
             {children}

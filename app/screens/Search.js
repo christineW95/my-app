@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Searchbar from "../components/search-bar";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -11,42 +11,39 @@ import {
 import ItemsList from "../components/items-list";
 import colors from "../theme";
 import ActorCard from "../components/actor-card";
-import { fetchStaticData, useFetchMovies } from "../hooks/fetchDataHook";
 import { useDispatch, useSelector } from "react-redux";
 import { getRequest } from "../services/APIs/MoviesAPIs";
 import { API_KEY, config } from "../services/config";
+import { fetchDataError, fetchDataPending, fetchDataSuccess } from "../store/action";
+import { ActivityIndicator } from "react-native-paper";
 
 const Search = ({ navigation}) => {
-  const content = useSelector(state => state); //this hook gives us redux store state
+  const [query, setQuery] = useState("");
+  let results = useSelector(state => state.payload.results); //this hook gives us redux store state
+  const pending = useSelector(state => state.pending); //this hook gives us redux store state
+  const error = useSelector(state => state.error); //this hook gives us redux store state
   const dispatch = useDispatch(); //this hook gives us dispatch method
-  //async action
   function getData() {
     return dispatch => {
+      dispatch(fetchDataPending())
       getRequest(config.base_url+config.search_movie, {
         api_key: API_KEY,
         query: query,
       })
       .then(res =>
       {
-          dispatch({
-          type: "FETCH_DATA",
-          data: res.results
-        })}
-      );
+          dispatch(fetchDataSuccess(res))
+        }
+
+      ).catch(err=>
+        dispatch(fetchDataError(err)))
     };
   }
+  
   function onFetchdata() {
-    //invoking action
   dispatch(getData());
 }
-  const [query, setQuery] = useState("");
-  let superheroes;
-  if (query == null || query == "") superheroes = [];
-  onChangeText=(text)=>{
-    setQuery(text);
-    onFetchdata()
-  }
- 
+  if (query == null || query == "") results = [];
   return (
     <View
       style={{
@@ -65,7 +62,7 @@ const Search = ({ navigation}) => {
           padding: 10,
         }}
       >
-        See your actors
+        See your movies
       </Text>
       <Text
         style={{
@@ -79,14 +76,18 @@ const Search = ({ navigation}) => {
       </Text>
 
       <Searchbar
-        onChangeText={onChangeText}
+        onChangeText={(text)=>
+          setQuery(text)}
         value={query}
+        onEndEditing={()=> onFetchdata()}
       >
              <TouchableOpacity onPress={()=>setQuery(null)}>
                 <MaterialCommunityIcons name="close" size={20} color={colors.red} />
             </TouchableOpacity></Searchbar>
-
+{pending ? <ActivityIndicator size={'large'} color='red'/>:null}
+{error ? alert('ERROR!'):null}
       <ItemsList
+
         renderItem={({ item, index }) => {
           return (
             <View>
@@ -102,7 +103,7 @@ const Search = ({ navigation}) => {
             </View>
           );
         }}
-        data={superheroes}
+        data={results}
       />
     </View>
   );

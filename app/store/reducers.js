@@ -1,21 +1,35 @@
-import {useSelector,useDispatch } from 'react-redux'
-function reducer(state = { data: "" }, action) {
-    switch (action.type) {
-      case "FETCH_DATA":
-        return {
-          ...state,
-          data: action.data
-        };
-        case "FAILURE":
+import {FETCH_DATA_PENDING, FETCH_DATA_SUCCESS, FETCH_DATA_ERROR} from './action';
+
+const initialState = {
+    pending: false,
+    payload: [],
+    error: null
+}
+
+ function reducer(state = initialState, action) {
+    switch(action.type) {
+        case FETCH_DATA_PENDING: 
             return {
-              ...state,
-              data: [],
-              error:'Err'
-            };
-           
-      default:
-        return state;
+                ...state,
+                pending: true
+            }
+        case FETCH_DATA_SUCCESS:
+            return {
+                ...state,
+                pending: false,
+                payload: action.payload
+            }
+        case FETCH_DATA_ERROR:
+            return {
+                ...state,
+                pending: false,
+                error: action.error
+            }
+        default: 
+            return state;
     }
-  }
-  
-  export default reducer;
+}
+export default reducer;
+// export const getProducts = state => state.payload;
+// export const getProductsPending = state => state.pending;
+// export const getProductsError = state => state.error;

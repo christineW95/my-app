@@ -9,10 +9,10 @@ const getRequest = async (url = '', body = {}) => {
     };
     try {
         const result = await axios(config);
-
         const {data:{results ,page},status}=result
         if(status == 200)
-      {  if(results !==null)
+      {  
+          if(results !==null)
         return {results,page};}
     }
     catch (Err) {
