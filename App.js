@@ -1,16 +1,12 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import HomeStackNavigator from './app/navigation';
+import Search from './app/screens/Search';
 import store from './app/store';
 
 export default function App() {
   return (
     <Provider store={store}>
-<NavigationContainer> 
-     <HomeStackNavigator/>
-   </NavigationContainer>
+<Search/>
     </Provider>
    
   );
