@@ -1,55 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { API_KEY, config } from "../services/config";
-import { getMovieDetailsRequest, getRequest } from "../services/APIs/MoviesAPIs";
-
-export const fetchStaticData = () =>
-  require("../services/constants/superheroes-data.json");
+import {  getRequest } from "../services/APIs/MoviesAPIs";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDataError, fetchDataPending, fetchDataSuccess } from "../store/action";
 
 export function useFetchMovies(movie) {
- 
-  const [result, setResult] = useState({
-    loading: true,
-    data: null,
-  });
-  const [error, setError] = useState(null);
+  let results = useSelector((state) => state?.payload?.results);
+  const pending = useSelector((state) => state?.pending);
+  const error = useSelector((state) => state?.error);
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
-    getRequest(config.base_url+config.search_movie, {
-      api_key: API_KEY,
-      query: movie,
-    })
-      .then((res) => {
-        if (res) {
-          setResult({ loading: false, data: res });
-        }
+    if(!movie) return
+      dispatch(fetchDataPending());
+      getRequest(config.base_url + config.search_movie, {
+        api_key: API_KEY,
+        query: movie,
       })
-      .catch((err) => {setError(err)
-      setResult({loading:false,data:null})})
+        .then((res) => dispatch(fetchDataSuccess(res)))
+        .catch((err) => dispatch(fetchDataError(err)));
     return () => {};
   }, [movie]);
 
-  return { result, error };
-}
-export function useFetchMovieDetails(id) {
- 
-  const [result, setResult] = useState({
-    loading: true,
-    data: null,
-  });
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    getMovieDetailsRequest(config.base_url, {
-      apikey: API_KEY,
-      i:id,
-    })
-      .then((res) => {
-        if (res) {
-          setResult({ loading: false, data: res.data });
-        }
-      })
-      .catch((err) => {setError(err)
-      setResult({loading:false,data:null})})
-    return () => {};
-  }, [id]);
-
-  return { result, error };
+  return { results,pending, error };
 }

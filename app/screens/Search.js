@@ -7,37 +7,13 @@ import { Text, TouchableOpacity, View } from "react-native";
 import ItemsList from "../components/items-list";
 import colors from "../theme";
 import MovieCard from "../components/movie-card";
-import { useDispatch, useSelector } from "react-redux";
-import { getRequest } from "../services/APIs/MoviesAPIs";
-import { API_KEY, config } from "../services/config";
-import {
-  fetchDataError,
-  fetchDataPending,
-  fetchDataSuccess,
-} from "../store/action";
 import { ActivityIndicator } from "react-native-paper";
+import { useFetchMovies } from "../hooks/fetchDataHook";
 
 const Search = () => {
   const [query, setQuery] = useState("");
-  let results = useSelector((state) => state.payload.results);
-  const pending = useSelector((state) => state.pending);
-  const error = useSelector((state) => state.error);
-  const dispatch = useDispatch();
-  function getData() {
-    return (dispatch) => {
-      dispatch(fetchDataPending());
-      getRequest(config.base_url + config.search_movie, {
-        api_key: API_KEY,
-        query: query,
-      })
-        .then((res) => dispatch(fetchDataSuccess(res)))
-        .catch((err) => dispatch(fetchDataError(err)));
-    };
-  }
+  let {results,pending,error}=useFetchMovies(query)
 
-  function onFetchdata() {
-    if (query) dispatch(getData());
-  }
   if (query == null || query == "") results = [];
   return (
     <View
@@ -74,12 +50,11 @@ const Search = () => {
       <Searchbar
         onChangeText={(text) => setQuery(text)}
         value={query}
-        onEndEditing={() => onFetchdata()}
+        onEndEditing={() => console.log('test')}
       >
         <TouchableOpacity
           onPress={() => {
             setQuery(null);
-            dispatch(fetchDataSuccess([]));
           }}
         >
           <MaterialCommunityIcons name="close" size={20} color={colors.red} />
