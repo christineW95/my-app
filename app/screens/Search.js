@@ -18,6 +18,7 @@ import { fetchDataError, fetchDataPending, fetchDataSuccess } from "../store/act
 import { ActivityIndicator } from "react-native-paper";
 
 const Search = () => {
+  
   const [query, setQuery] = useState("");
   let results = useSelector(state => state.payload.results); 
   const pending = useSelector(state => state.pending);
@@ -41,6 +42,7 @@ const Search = () => {
   }
   
   function onFetchdata() {
+    if(query)
   dispatch(getData());
 }
   if (query == null || query == "") results = [];
@@ -81,7 +83,10 @@ const Search = () => {
         value={query}
         onEndEditing={()=> onFetchdata()}
       >
-             <TouchableOpacity onPress={()=>setQuery(null)}>
+             <TouchableOpacity onPress={()=>{setQuery(null)
+            dispatch(fetchDataSuccess([]))
+            
+            }}>
                 <MaterialCommunityIcons name="close" size={20} color={colors.red} />
             </TouchableOpacity></Searchbar>
 {pending ? <ActivityIndicator size={'large'} color='red'/>:null}
