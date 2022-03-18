@@ -9,10 +9,11 @@ const getRequest = async (url = '', body = {}) => {
     };
     try {
         const result = await axios(config);
-        const {data:{Search ,totalResults},status}=result
+
+        const {data:{results ,page},status}=result
         if(status == 200)
-      {  if(Search !==null)
-        return {Search,totalResults};}
+      {  if(results !==null)
+        return {results,page};}
     }
     catch (Err) {
         console.log(Err)

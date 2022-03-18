@@ -9,17 +9,21 @@ import {
   View,
 } from "react-native";
 import ItemsList from "../components/items-list";
-import { fetchStaticData } from "../store/fetchDataHook";
 import colors from "../theme";
 import ActorCard from "../components/actor-card";
+import { fetchStaticData, useFetchMovies } from "../hooks/fetchDataHook";
 const Search = ({ navigation }) => {
   const [query, setQuery] = useState("");
   let superheroes;
-  if (query == null || query == "") superheroes = fetchStaticData();
-  else
-    superheroes = fetchStaticData().filter((item) =>
-      item.toLowerCase().includes(query.toLowerCase())
-    );
+  if (query == null || query == "") superheroes = [];
+  onChangeText=(text)=>{
+    setQuery(text);
+  }
+   let {
+      result: { loading, data },
+      error,
+    } = useFetchMovies(query);
+  superheroes=data;
   return (
     <View
       style={{
@@ -52,9 +56,7 @@ const Search = ({ navigation }) => {
       </Text>
 
       <Searchbar
-        onChangeText={(text) => {
-          setQuery(text);
-        }}
+        onChangeText={onChangeText}
         value={query}
       >
              <TouchableOpacity onPress={()=>setQuery(null)}>

@@ -5,7 +5,7 @@ import { getMovieDetailsRequest, getRequest } from "../services/APIs/MoviesAPIs"
 export const fetchStaticData = () =>
   require("../services/constants/superheroes-data.json");
 
-export function useFetchMovies(actor) {
+export function useFetchMovies(movie) {
  
   const [result, setResult] = useState({
     loading: true,
@@ -13,9 +13,9 @@ export function useFetchMovies(actor) {
   });
   const [error, setError] = useState(null);
   useEffect(() => {
-    getRequest(config.base_url, {
-      apikey: API_KEY,
-      s: actor,
+    getRequest(config.base_url+config.search_movie, {
+      api_key: API_KEY,
+      query: movie,
     })
       .then((res) => {
         if (res) {
@@ -25,7 +25,7 @@ export function useFetchMovies(actor) {
       .catch((err) => {setError(err)
       setResult({loading:false,data:null})})
     return () => {};
-  }, [actor]);
+  }, [movie]);
 
   return { result, error };
 }

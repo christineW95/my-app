@@ -1,6 +1,6 @@
 const config = {
-    base_url: 'http://www.omdbapi.com/',
-    poster_url:'http://img.omdbapi.com/',
+    base_url: 'https://api.themoviedb.org/3',
+    search_movie:'/search/movie',
  
 
 }
@@ -8,7 +8,7 @@ const headers = {
     "Content-Type": "application/json",
 }
 
-const API_KEY='9e663ab1'
+const API_KEY='88591e1e43826c186c436a5d4f0cfda9'
 export {
     config,
     headers,

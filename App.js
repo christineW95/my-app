@@ -1,13 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-native-paper';
 import HomeStackNavigator from './app/navigation';
+import store from './app/store';
 
 export default function App() {
   return (
-   <NavigationContainer> 
+    <Provider store={store}>
+<NavigationContainer> 
      <HomeStackNavigator/>
    </NavigationContainer>
+    </Provider>
+   
   );
 }
 

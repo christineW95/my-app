@@ -1,0 +1,1 @@
+export default store = createStore(rootReducer)

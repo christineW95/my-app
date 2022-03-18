@@ -5,7 +5,7 @@ const LeftContent = props => <Avatar.Icon {...props} icon="movie" color='#F28D79
 
 const ActorCard = ({actor,index}) => (
   <Card style={{borderRadius:15,}}>
-    <Card.Title title={actor}  left={LeftContent} titleStyle={{color:'#303C4B'}} titleNumberOfLines={2}/>
+    <Card.Title title={actor.title}  left={LeftContent} titleStyle={{color:'#303C4B'}} titleNumberOfLines={2}/>
  
   </Card>
 );

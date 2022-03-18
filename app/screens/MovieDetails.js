@@ -4,9 +4,9 @@ import React from "react";
 import { View, Text, ScrollView, Image, ActivityIndicator } from "react-native";
 import { getMovieDetailsRequest } from "../services/APIs/MoviesAPIs";
 import { API_KEY, config } from "../services/config";
-import { useFetchMovieDetails } from "../store/fetchDataHook";
 import colors from "../theme";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useFetchMovieDetails } from "../hooks/fetchDataHook";
 
 const MovieDetails = ({ route, navigation }) => {
   const {

@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 import ItemsList from "../components/items-list";
-import { useFetchMovies } from "../store/fetchDataHook";
 import MovieCard from "../components/card";
 import colors from "../theme";
+import { useFetchMovies } from "../hooks/fetchDataHook";
 const Home = ({ route, navigation }) => {
   const generateRandom = (limit) => Math.floor(Math.random() * limit);
   const { actor } = route.params;
