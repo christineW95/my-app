@@ -50,7 +50,7 @@ const Search = () => {
       <Searchbar
         onChangeText={(text) => setQuery(text)}
         value={query}
-        onEndEditing={() => console.log('test')}
+        onEndEditing={() => console.log('end editing')}
       >
         <TouchableOpacity
           onPress={() => {
